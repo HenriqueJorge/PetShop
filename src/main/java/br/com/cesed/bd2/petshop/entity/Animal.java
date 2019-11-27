@@ -1,18 +1,18 @@
 package br.com.cesed.bd2.petshop.entity;
 
-import java.sql.Date;
+import java.text.ParseException;
 
 public class Animal {
 
 	private int registro;
-	private String tipo;
-	private double peso;
-	private double altura;
-	private Date dtUltMed;
-	private String raca;
+	private String tipo ;
+	private double peso ;
+	private double altura ;
+	private String dtUltMed ;
+	private String raca ;
 	private double precocompra;
 	private double precoVenda;
-	private Date dtNasc;
+	private String dtNasc;
 
 	public int getRegistro() {
 		return registro;
@@ -46,11 +46,11 @@ public class Animal {
 		this.altura = altura;
 	}
 
-	public Date getDtUltMed() {
+	public String getDtUltMed() {
 		return dtUltMed;
 	}
 
-	public void setDtUltMed(Date dtUltMed) {
+	public void setDtUltMed(String dtUltMed) {
 		this.dtUltMed = dtUltMed;
 	}
 
@@ -78,11 +78,11 @@ public class Animal {
 		this.precoVenda = precoVenda;
 	}
 
-	public Date getDtNasc() {
+	public String getDtNasc() throws ParseException {
 		return dtNasc;
 	}
 
-	public void setDtNasc(Date dtNasc) {
+	public void setDtNasc(String dtNasc) {
 		this.dtNasc = dtNasc;
 	}
 

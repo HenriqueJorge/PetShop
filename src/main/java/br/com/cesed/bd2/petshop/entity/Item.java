@@ -1,6 +1,7 @@
 package br.com.cesed.bd2.petshop.entity;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Item {
 
@@ -9,7 +10,7 @@ public class Item {
 	private String tipo;
 	private double precoFornecedor;
 	private double precoLoja;
-	private Date validade;
+	private String validade;
 	private int quantidade;
 
 	public int getCodigo() {
@@ -52,11 +53,11 @@ public class Item {
 		this.precoLoja = precoLoja;
 	}
 
-	public Date getValidade() {
+	public String getValidade() {
 		return validade;
 	}
 
-	public void setValidade(Date validade) {
+	public void setValidade(String validade) {
 		this.validade = validade;
 	}
 

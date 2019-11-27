@@ -16,8 +16,17 @@ public class FuncionarioDAO {
 	
 	private Connection con;
 	
-	public FuncionarioDAO() throws ClassNotFoundException, SQLException {
-		con = Conexao.criarConecao();
+	public FuncionarioDAO() 
+	{
+		try {
+			con = Conexao.criarConecao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertFuncionario1(Funcionario f) throws SQLException {
@@ -29,8 +38,8 @@ public class FuncionarioDAO {
 		preparador.setString(3, f.getEndereco());
 		preparador.setString(4, f.getTelefone());
 		preparador.setDouble(5, f.getSalario());
-		preparador.setDate(6, f.getDtNasc());
-		preparador.setDate(7, f.getDtAdm());
+		preparador.setString(6, f.getDtNasc());
+		preparador.setString(7, f.getDtAdm());
 		preparador.setString(8, f.getFuncao());
 		preparador.execute();
 		preparador.close();
@@ -44,8 +53,8 @@ public class FuncionarioDAO {
 		preparador.setString(2, f.getCpf());
 		preparador.setString(3, f.getEndereco());
 		preparador.setString(4, f.getTelefone());
-		preparador.setDate(5, f.getDtNasc());
-		preparador.setDate(6, f.getDtAdm());
+		preparador.setString(5, f.getDtNasc());
+		preparador.setString(6, f.getDtAdm());
 		preparador.setString(7, f.getFuncao());
 		preparador.execute();
 		preparador.close();
@@ -59,8 +68,8 @@ public class FuncionarioDAO {
 		preparador.setString(2, f.getCpf());
 		preparador.setString(3, f.getEndereco());
 		preparador.setDouble(4, f.getSalario());
-		preparador.setDate(5, f.getDtNasc());
-		preparador.setDate(6, f.getDtAdm());
+		preparador.setString(5, f.getDtNasc());
+		preparador.setString(6, f.getDtAdm());
 		preparador.setString(7, f.getFuncao());
 		preparador.execute();
 		preparador.close();
@@ -106,7 +115,7 @@ public class FuncionarioDAO {
 	public void updateFuncionario5(Funcionario f) throws SQLException {
 		String sql = "update funcionario set dtDemi = ? where matricula = ?";
 		PreparedStatement preparador = con.prepareStatement(sql);
-		preparador.setDate(1, f.getDtDemi());
+		preparador.setString(1, f.getDtDemi());
 		preparador.setInt(2, f.getMatricula());
 		preparador.execute();
 		preparador.close();
@@ -133,10 +142,10 @@ public class FuncionarioDAO {
 			f.setEndereco(r.getString("endereco"));
 			f.setTelefone(r.getString("telefone"));
 			f.setSalario(r.getDouble("salario"));
-			f.setDtNasc(r.getDate("dtnasc"));
-			f.setDtAdm(r.getDate("dtadm"));
+			f.setDtNasc(r.getString("dtnasc"));
+			f.setDtAdm(r.getString("dtadm"));
 			f.setFuncao(r.getString("funcao"));
-			f.setDtDemi(r.getDate("dtdemi"));
+			f.setDtDemi(r.getString("dtdemi"));
 			fl.add(f);
 		}
 		return fl;
@@ -156,10 +165,10 @@ public class FuncionarioDAO {
 			f.setEndereco(r.getString("endereco"));
 			f.setTelefone(r.getString("telefone"));
 			f.setSalario(r.getDouble("salario"));
-			f.setDtNasc(r.getDate("dtnasc"));
-			f.setDtAdm(r.getDate("dtadm"));
+			f.setDtNasc(r.getString("dtnasc"));
+			f.setDtAdm(r.getString("dtadm"));
 			f.setFuncao(r.getString("funcao"));
-			f.setDtDemi(r.getDate("dtdemi"));
+			f.setDtDemi(r.getString("dtdemi"));
 			fl.add(f);
 		}
 		return fl;

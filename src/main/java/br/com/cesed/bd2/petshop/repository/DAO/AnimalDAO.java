@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,26 +17,34 @@ public class AnimalDAO {
 	
 	private Connection con;
 	
-	public AnimalDAO() throws ClassNotFoundException, SQLException {
-		con = Conexao.criarConecao();
+	public AnimalDAO() {
+		try {
+			con = Conexao.criarConecao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void insertAnimal1(Animal a) throws SQLException {
-		String sql = "insert into animal values(?,?,?,?,?,?,?,?)";
+	public void insertAnimal1(Animal a) throws SQLException, ParseException {
+		String sql = "insert into animal(tipo,peso,altura,dtultmed,raca,precocompra,precovenda,dtnasc) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, a.getTipo() );
 		preparador.setDouble(2, a.getPeso());
 		preparador.setDouble(3, a.getAltura());
-		preparador.setDate(4, a.getDtUltMed());
+		preparador.setString(4,  a.getDtUltMed());
 		preparador.setString(5, a.getRaca());
 		preparador.setDouble(6, a.getPrecocompra());
 		preparador.setDouble(7, a.getPrecoVenda());
-		preparador.setDate(8, a.getDtNasc());
+		preparador.setString(8, a.getDtNasc());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void insertAnimal2(Animal a) throws SQLException {
+	public void insertAnimal2(Animal a) throws SQLException, ParseException {
 		String sql = "insert into animal(tipo,raca,precocompra,precovenda,dtnasc)"
 				+ " values(?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
@@ -43,62 +52,62 @@ public class AnimalDAO {
 		preparador.setString(2, a.getRaca());
 		preparador.setDouble(3, a.getPrecocompra());
 		preparador.setDouble(4, a.getPrecoVenda());
-		preparador.setDate(5, a.getDtNasc());
+		preparador.setString(5, a.getDtNasc());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void insertAnimal3(Animal a) throws SQLException {
+	public void insertAnimal3(Animal a) throws SQLException, ParseException {
 		String sql = "insert into animal(tipo,peso,altura,dtultmed,raca,precocompra,dtnasc) "
 				+ "Values (?,?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, a.getTipo());
 		preparador.setDouble(2, a.getPeso());
 		preparador.setDouble(3, a.getAltura());
-		preparador.setDate(4, a.getDtUltMed());
+		preparador.setString(4,  a.getDtUltMed());
 		preparador.setString(5, a.getRaca());
 		preparador.setDouble(6, a.getPrecocompra());
-		preparador.setDate(7, a.getDtNasc());
+		preparador.setString(7, a.getDtNasc());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void insertAnimal4(Animal a) throws SQLException {
+	public void insertAnimal4(Animal a) throws SQLException, ParseException {
 		String sql = "insert into animal(tipo,peso,altura,dtultmed,race,precocompra,dtnasc) "
 				+ "values (?,?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, a.getTipo());
 		preparador.setDouble(2, a.getPeso());
 		preparador.setDouble(3, a.getAltura());
-		preparador.setDate(4, a.getDtUltMed());
+		preparador.setString(4,  a.getDtUltMed());
 		preparador.setString(5, a.getRaca());
 		preparador.setDouble(6, a.getPrecocompra());
-		preparador.setDate(7, a.getDtNasc());
+		preparador.setString(7, a.getDtNasc());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void insertAnimal5(Animal a) throws SQLException {
+	public void insertAnimal5(Animal a) throws SQLException, ParseException {
 		String sql = "insert into animal(tipo,peso,altura,dtultmed,race,dtnasc) values(?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, a.getTipo());
 		preparador.setDouble(2, a.getPeso());
 		preparador.setDouble(3, a.getAltura());
-		preparador.setDate(4, a.getDtUltMed());
+		preparador.setString(4,  a.getDtUltMed());
 		preparador.setString(5, a.getRaca());
-		preparador.setDate(6, a.getDtNasc());
+		preparador.setString(6, a.getDtNasc());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void insertAnimal6(Animal a) throws SQLException {
+	public void insertAnimal6(Animal a) throws SQLException, ParseException {
 		String sql = "insert into animal(tipo,peso,altura,dtultmed,race,precocompra,precovenda)"
 				+ " values(?,?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, a.getTipo());
 		preparador.setDouble(2, a.getPeso());
 		preparador.setDouble(3, a.getAltura());
-		preparador.setDate(4, a.getDtUltMed());
+		preparador.setString(4,  a.getDtUltMed());
 		preparador.setString(5, a.getRaca());
 		preparador.setDouble(6, a.getPrecocompra());
 		preparador.setDouble(7, a.getPrecoVenda());
@@ -106,32 +115,32 @@ public class AnimalDAO {
 		preparador.close();
 	}
 	
-	public void updateAnimal1(Animal a) throws SQLException {
+	public void updateAnimal1(Animal a) throws SQLException, ParseException {
 		String sql = "update animal set peso = ?,altura = ?,dtultmed = ? where registro = ?";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setDouble(1, a.getPeso());
 		preparador.setDouble(2, a.getAltura());
-		preparador.setDate(3, a.getDtUltMed());
+		preparador.setString(3,  a.getDtUltMed());
 		preparador.setInt(4, a.getRegistro());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void updateAnimal2(Animal a) throws SQLException {
+	public void updateAnimal2(Animal a) throws SQLException, ParseException {
 		String sql = "update animal set peso = ?,dtultmed = ? where registro = ?";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setDouble(1, a.getPeso());
-		preparador.setDate(2, a.getDtUltMed());
+		preparador.setString(2,  a.getDtUltMed());
 		preparador.setInt(3, a.getRegistro());
 		preparador.execute();
 		preparador.close();
 	}
 	
-	public void updateAnimal3(Animal a) throws SQLException {
+	public void updateAnimal3(Animal a) throws SQLException, ParseException {
 		String sql = "update animal set altura = ?,dtultmed = ? where registro = ?";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setDouble(1, a.getPeso());
-		preparador.setDate(2, a.getDtUltMed());
+		preparador.setString(2,  a.getDtUltMed());
 		preparador.setInt(3, a.getRegistro());
 		preparador.execute();
 		preparador.close();
@@ -220,11 +229,11 @@ public class AnimalDAO {
 			a.setTipo(r.getString("tipo"));
 			a.setPeso(r.getDouble("peso"));
 			a.setAltura(r.getDouble("altura"));
-			a.setDtUltMed(r.getDate("dtultmed"));
+			a.setDtUltMed(r.getString("dtultmed"));
 			a.setRaca(r.getString("raca"));
 			a.setPrecocompra(r.getDouble("precocompra"));
 			a.setPrecoVenda(r.getDouble("precovenda"));
-			a.setDtNasc(r.getDate("dtnasc"));
+			a.setDtNasc(r.getString("dtnasc"));
 			ar.add(a);
 		}
 		return ar;
@@ -242,11 +251,11 @@ public class AnimalDAO {
 			a.setTipo(r.getString("tipo"));
 			a.setPeso(r.getDouble("peso"));
 			a.setAltura(r.getDouble("altura"));
-			a.setDtUltMed(r.getDate("dtultmed"));
+			a.setDtUltMed(r.getString("dtultmed"));
 			a.setRaca(r.getString("raca"));
 			a.setPrecocompra(r.getDouble("precocompra"));
 			a.setPrecoVenda(r.getDouble("precovenda"));
-			a.setDtNasc(r.getDate("dtnasc"));
+			a.setDtNasc(r.getString("dtnasc"));
 			ar.add(a);
 		}
 		return ar;
@@ -264,11 +273,11 @@ public class AnimalDAO {
 			a.setTipo(r.getString("tipo"));
 			a.setPeso(r.getDouble("peso"));
 			a.setAltura(r.getDouble("altura"));
-			a.setDtUltMed(r.getDate("dtultmed"));
+			a.setDtUltMed(r.getString("dtultmed"));
 			a.setRaca(r.getString("raca"));
 			a.setPrecocompra(r.getDouble("precocompra"));
 			a.setPrecoVenda(r.getDouble("precovenda"));
-			a.setDtNasc(r.getDate("dtnasc"));
+			a.setDtNasc(r.getString("dtnasc"));
 			ar.add(a);
 		}
 		return ar;

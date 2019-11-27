@@ -1,7 +1,5 @@
 package br.com.cesed.bd2.petshop.entity;
 
-import java.sql.Date;
-
 public class Funcionario {
 
 	private int matricula;
@@ -10,10 +8,10 @@ public class Funcionario {
 	private String endereco;
 	private String telefone;
 	private double salario;
-	private Date dtNasc;
-	private Date dtAdm;
+	private String dtNasc;
+	private String dtAdm;
 	private String funcao;
-	private Date dtDemi;
+	private String dtDemi;
 
 	public int getMatricula() {
 		return matricula;
@@ -63,19 +61,19 @@ public class Funcionario {
 		this.salario = salario;
 	}
 
-	public Date getDtNasc() {
+	public String getDtNasc() {
 		return dtNasc;
 	}
 
-	public void setDtNasc(Date dtNasc) {
+	public void setDtNasc(String dtNasc) {
 		this.dtNasc = dtNasc;
 	}
 
-	public Date getDtAdm() {
+	public String getDtAdm() {
 		return dtAdm;
 	}
 
-	public void setDtAdm(Date dtAdm) {
+	public void setDtAdm(String dtAdm) {
 		this.dtAdm = dtAdm;
 	}
 
@@ -87,11 +85,11 @@ public class Funcionario {
 		this.funcao = funcao;
 	}
 
-	public Date getDtDemi() {
+	public String getDtDemi() {
 		return dtDemi;
 	}
 
-	public void setDtDemi(Date dtDemi) {
+	public void setDtDemi(String dtDemi) {
 		this.dtDemi = dtDemi;
 	}
 

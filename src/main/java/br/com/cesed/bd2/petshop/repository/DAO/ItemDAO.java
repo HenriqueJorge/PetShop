@@ -15,18 +15,26 @@ public class ItemDAO {
 
 	private Connection con;
 
-	public ItemDAO() throws ClassNotFoundException, SQLException {
-		con = Conexao.criarConecao();
+	public ItemDAO() {
+		try {
+			con = Conexao.criarConecao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void insertItem1(Item i) throws SQLException {
-		String sql = "insert into item values(?,?,?,?,?,?)";
+		String sql = "insert into item(descricao,tipo,precofornecedor,precoloja,validade,quantidade) values(?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setString(1, i.getDescricao());
 		preparador.setString(2, i.getTipo());
 		preparador.setDouble(3, i.getPrecoFornecedor());
 		preparador.setDouble(4, i.getPrecoLoja());
-		preparador.setDate(5, i.getValidade());
+		preparador.setString(5, i.getValidade());
 		preparador.setInt(6, i.getQuantidade());
 		preparador.execute();
 		preparador.close();
@@ -52,7 +60,7 @@ public class ItemDAO {
 		preparador.setString(1, i.getDescricao());
 		preparador.setString(2, i.getTipo());
 		preparador.setDouble(3, i.getPrecoFornecedor());
-		preparador.setDate(4, i.getValidade());
+		preparador.setString(4, i.getValidade());
 		preparador.setInt(5, i.getQuantidade());
 		preparador.execute();
 		preparador.close();
@@ -116,7 +124,7 @@ public class ItemDAO {
 			i.setTipo(r.getString("tipo"));
 			i.setPrecoFornecedor(r.getDouble("precofornecedor"));
 			i.setPrecoLoja(r.getDouble("precoloja"));
-			i.setValidade(r.getDate("validade"));
+			i.setValidade(r.getString("validade"));
 			i.setQuantidade(r.getInt("quantidade"));
 			il.add(i);			
 		}

@@ -19,12 +19,20 @@ public class VendaItemDAO {
 	
 	private Connection con;
 	
-	public VendaItemDAO() throws ClassNotFoundException, SQLException {
-		con = Conexao.criarConecao();
+	public VendaItemDAO()  {
+		try {
+			con = Conexao.criarConecao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertVendaItem1(VendaItem vi) throws SQLException {
-		String sql = "insert into ventaitem(itemcod,funcmat,dia,mes,ano,comissaoi,desconto)"
+		String sql = "insert into vendaitem(itemcod,funcmat,dia,mes,ano,comissaoi,desconto)"
 				+ " values(?,?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setInt(1, vi.getItemCod());
@@ -39,7 +47,7 @@ public class VendaItemDAO {
 	}
 	
 	public void insertVendaItem2(VendaItem vi) throws SQLException {
-		String sql = "insert into ventaitem(itemcod,funcmat,dia,mes,ano,comissaoi) values(?,?,?,?,?,?)";
+		String sql = "insert into vendaitem(itemcod,funcmat,dia,mes,ano,comissaoi) values(?,?,?,?,?,?)";
 		PreparedStatement preparador = con.prepareStatement(sql);
 		preparador.setInt(1, vi.getItemCod());
 		preparador.setInt(2, vi.getFuncMat());
@@ -231,26 +239,6 @@ public class VendaItemDAO {
 	    }
 	    return vil;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 
 }

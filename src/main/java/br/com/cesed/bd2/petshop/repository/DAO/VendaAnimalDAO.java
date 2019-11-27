@@ -20,8 +20,16 @@ public class VendaAnimalDAO {
 	
 	private Connection con;
 	
-	public VendaAnimalDAO() throws ClassNotFoundException, SQLException {
-		con = Conexao.criarConecao();
+	public VendaAnimalDAO()  {
+		try {
+			con = Conexao.criarConecao();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertVendaAnimal1(VendaAnimal va) throws SQLException {
@@ -161,6 +169,7 @@ public class VendaAnimalDAO {
 			va.setValorFinal(r.getDouble("valorfinal"));
 			val.add(va);
 		}
+		
 		return val;
 	}
 
